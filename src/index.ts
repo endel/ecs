@@ -8,16 +8,22 @@ import {
     Types,
 } from "ecsy";
 
-import { applyMixins } from "./utils";
 import { TYPE_MAP } from "./types";
 
 // Combine Schema + EcsyComponent
 export interface Component<C=any> extends Schema, EcsyComponent<C> {};
-export class Component<C> {
-    static schema: any;
-    static isComponent: true;
+export class Component<C> extends Schema {
+    static schema: any = {};
+    static isComponent: true = true;
 }
-applyMixins(Component, [EcsyComponent, Schema]);
+
+//
+// Copy Ecsy's Component methods into Schema prototype
+// (Schema already implements .clone())
+//
+(Component.prototype as any).copy = EcsyComponent.prototype.copy;
+(Component.prototype as any).reset = EcsyComponent.prototype.reset;
+(Component.prototype as any).dispose = EcsyComponent.prototype.dispose;
 
 export class World extends EcsyWorld {
     // @ts-ignore
