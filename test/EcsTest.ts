@@ -1,4 +1,4 @@
-import { type } from "@colyseus/schema";
+import { type, Reflection } from "@colyseus/schema";
 import { World, System, TagComponent } from "../src";
 import { Component } from "../src";
 // import { Component } from "ecsy";
@@ -98,7 +98,7 @@ describe("ECS", () => {
                 .addComponent(Velocity, getRandomVelocity())
                 .addComponent(Shape, getRandomShape())
                 .addComponent(Position, getRandomPosition())
-                .addComponent(Renderable)
+                // .addComponent(Renderable)
 
             const velocity = entity.getComponent(Velocity);
             console.log("INITIAL VELOCITY =>", velocity.x, velocity.y, velocity.toJSON());
@@ -110,26 +110,32 @@ describe("ECS", () => {
             console.log("INITIAL POSITION =>", position.x, position.y, position.toJSON());
         }
 
+        const state = Reflection.decode(Reflection.encode(world.state));
+        const encoded = world.state.encode();
+        console.log("ENCODED =>", encoded);
+        state.decode(encoded);
+
+        // Finish.
         done();
 
-        // // Run!
-        // function run() {
-        //     // Compute delta and elapsed time
-        //     var time = Date.now();
-        //     var delta = time - lastTime;
+        // Run!
+        function run() {
+            // Compute delta and elapsed time
+            var time = Date.now();
+            var delta = time - lastTime;
 
-        //     // Run all the systems
-        //     world.execute(delta, time);
+            // Run all the systems
+            world.execute(delta, time);
 
-        //     lastTime = time;
-        // }
-        // var lastTime = Date.now();
+            lastTime = time;
+        }
+        var lastTime = Date.now();
 
-        // let simulationInterval = setInterval(run, 1000/60);
-        // setTimeout(() => {
-        //     clearInterval(simulationInterval);
-        //     done();
-        // }, 1000);
+        let simulationInterval = setInterval(run, 1000/60);
+        setTimeout(() => {
+            clearInterval(simulationInterval);
+            done();
+        }, 1000);
     });
 
 });

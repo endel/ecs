@@ -1,6 +1,6 @@
 {
   "name": "@colyseus/ecs",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "description": "Entity Component System integration for Colyseus",
   "main": "lib/index.js",
   "scripts": {
@@ -30,7 +30,7 @@
     "typescript": "^3.9.7"
   },
   "dependencies": {
-    "@colyseus/schema": "^1.0.0-alpha.23",
+    "@colyseus/schema": "^1.0.0-alpha.28",
     "ecsy": "^0.3.2",
     "ts-mixer": "^5.3.0"
   }
