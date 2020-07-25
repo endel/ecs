@@ -1,3 +1,4 @@
+import util from "util";
 import { type, Reflection } from "@colyseus/schema";
 import { World, System, TagComponent } from "../src";
 import { Component } from "../src";
@@ -50,8 +51,6 @@ describe("ECS", () => {
                 var position = entity.getMutableComponent(Position);
                 position.x += velocity.x * delta;
                 position.y += velocity.y * delta;
-
-                console.log("Result:", position.toJSON());
 
                 if (position.x > canvasWidth + SHAPE_HALF_SIZE) position.x = - SHAPE_HALF_SIZE;
                 if (position.x < - SHAPE_HALF_SIZE) position.x = canvasWidth + SHAPE_HALF_SIZE;
@@ -111,12 +110,10 @@ describe("ECS", () => {
         }
 
         const state = Reflection.decode(Reflection.encode(world.state));
-        const encoded = world.state.encode();
-        console.log("ENCODED =>", encoded);
-        state.decode(encoded);
+        state.decode(world.state.encode());
 
-        // Finish.
-        done();
+        // // Finish.
+        // done();
 
         // Run!
         function run() {
@@ -126,6 +123,10 @@ describe("ECS", () => {
 
             // Run all the systems
             world.execute(delta, time);
+
+            const encoded = world.state.encode();
+            console.log("ENCODED SIZE =>", encoded.length);
+            state.decode(encoded);
 
             lastTime = time;
         }

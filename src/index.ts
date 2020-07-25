@@ -16,6 +16,8 @@ export interface Component<C=any> extends Schema, EcsyComponent<C> {};
 export class Component<C> extends Schema {
     static schema: any = {};
     static isComponent: true = true;
+
+    @type("uint8") _: number; // dummy type to make this component serializable.
 }
 
 //
