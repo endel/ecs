@@ -4,8 +4,8 @@ import {
     World as EcsyWorld,
     _Entity as EcsyEntity,
     Component as EcsyComponent,
+    TagComponent as EcsyTagComponent,
     System,
-    TagComponent,
     Types,
 } from "ecsy";
 
@@ -16,8 +16,11 @@ export interface Component<C=any> extends Schema, EcsyComponent<C> {};
 export class Component<C> extends Schema {
     static schema: any = {};
     static isComponent: true = true;
+}
 
-    @type("uint8") _: number; // dummy type to make this component serializable.
+export interface TagComponent<C=any> extends Schema, EcsyTagComponent {};
+export class TagComponent extends Component {
+    static isTagComponent = true;
 }
 
 //
@@ -143,4 +146,4 @@ export class World extends EcsyWorld {
     }
 }
 
-export { System, TagComponent};
+export { System };

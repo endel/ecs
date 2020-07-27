@@ -110,7 +110,9 @@ describe("ECS", () => {
         }
 
         const state = Reflection.decode(Reflection.encode(world.state));
-        state.decode(world.state.encode());
+        const fullEncode = world.state.encode();
+        console.log("ENCODED SIZE =>", fullEncode.length);
+        state.decode(fullEncode);
 
         // // Finish.
         // done();

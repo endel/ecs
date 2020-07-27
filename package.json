@@ -30,7 +30,7 @@
     "typescript": "^3.9.7"
   },
   "dependencies": {
-    "@colyseus/schema": "^1.0.0-alpha.28",
+    "@colyseus/schema": "^1.0.0-alpha.29",
     "ecsy": "^0.3.2",
     "ts-mixer": "^5.3.0"
   }
