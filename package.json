@@ -1,15 +1,22 @@
 {
   "name": "@colyseus/ecs",
-  "version": "0.3.0",
+  "version": "0.3.0-alpha.5",
   "description": "Entity Component System integration for Colyseus",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
-    "test": "mocha --require ts-node/register test/*Test.ts test/**/*Test.ts"
+    "test": "mocha --require ts-node/register test/*Test.ts test/**/*Test.ts",
+    "prepublish": "tsc"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/endel/ecs.git"
   },
+  "files": [
+    "lib",
+    "LICENSE",
+    "README.md"
+  ],
   "keywords": [
     "entity-component",
     "system",

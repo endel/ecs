@@ -32,7 +32,7 @@ export class TagComponent extends Component {
 (Component.prototype as any).dispose = EcsyComponent.prototype.dispose;
 
 // @ts-ignore
-class Entity extends Schema implements EcsyEntity {
+export class Entity extends Schema implements EcsyEntity {
     id: number;
     alive: boolean;
 
