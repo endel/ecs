@@ -2,6 +2,7 @@ import { Schema, ArraySchema, type } from "@colyseus/schema";
 
 import {
     World as EcsyWorld,
+    WorldOptions,
     _Entity as EcsyEntity,
     Component as EcsyComponent,
     TagComponent as EcsyTagComponent,
@@ -95,19 +96,22 @@ export class Entity extends Schema implements EcsyEntity {
 (Entity.prototype as any).reset = EcsyEntity.prototype.reset;
 (Entity.prototype as any).remove = EcsyEntity.prototype.remove;
 
-class State extends Schema {
+export class State extends Schema {
     @type([Entity]) entities: Entity[] = [];
 }
 
 export class World extends EcsyWorld {
-    state: State;
+    constructor(options: WorldOptions = {}) {
+        if (!options.entityClass) {
+            // Use built-in Entity if none were specified.
+            options.entityClass = Entity;
+        }
 
-    constructor(options: any = {}) {
-        options.entityClass = Entity;
         super(options);
+    }
 
-        this.state = new State();
-        this['entityManager']._entities = this.state.entities;
+    useEntities(entities: Entity[]) {
+        this['entityManager']._entities = entities;
     }
 
     // @ts-ignore

@@ -1,6 +1,6 @@
 import util from "util";
 import { type, Reflection } from "@colyseus/schema";
-import { World, System, TagComponent } from "../src";
+import { World, System, TagComponent, State } from "../src";
 import { Component } from "../src";
 // import { Component } from "ecsy";
 
@@ -63,6 +63,11 @@ describe("ECS", () => {
     it("should work", (done) => {
         // Create world and register the components and systems on it
         var world = new World();
+
+        // Create Schema state, and assign entities array to it.
+        const state = new State();
+        world.useEntities(state.entities);
+
         world
             .registerComponent(Velocity)
             .registerComponent(Position)
@@ -109,10 +114,10 @@ describe("ECS", () => {
             console.log("INITIAL POSITION =>", position.x, position.y, position.toJSON());
         }
 
-        const state = Reflection.decode(Reflection.encode(world.state));
-        const fullEncode = world.state.encode();
+        const decodedState = Reflection.decode(Reflection.encode(state));
+        const fullEncode = state.encode();
         console.log("ENCODED SIZE =>", fullEncode.length);
-        state.decode(fullEncode);
+        decodedState.decode(fullEncode);
 
         // // Finish.
         // done();
@@ -126,9 +131,9 @@ describe("ECS", () => {
             // Run all the systems
             world.execute(delta, time);
 
-            const encoded = world.state.encode();
+            const encoded = state.encode();
             console.log("ENCODED SIZE =>", encoded.length);
-            state.decode(encoded);
+            decodedState.decode(encoded);
 
             lastTime = time;
         }
