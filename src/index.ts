@@ -115,14 +115,41 @@ export class World extends EcsyWorld {
             typeof global['window'] !== 'undefined' &&
             typeof global['window'].document !== 'undefined'
         ) {
-            this.enableAutoDecoding(entities);
+            this.enableAutoDecoding(entities as any);
         }
 
         return this;
     }
 
-    enableAutoDecoding(entities: Entity[]) {
-        console.log("TODO: enableAutoDecoding");
+    enableAutoDecoding(entities: ArraySchema<Entity>) {
+        const entityManager = this['entityManager'];
+        const componentsManager = this['componentsManager']
+
+        entities.onAdd = (entity: Entity, index: number) => {
+            entity.alive = true;
+
+            console.log("Entity added!", { entity, index });
+            // const localEntity = world.createEntity();
+
+            entity.components.onAdd = function (component, key) {
+                const ComponentType = component.constructor as typeof Schema;
+
+                entity['_ComponentTypes'].push(ComponentType);
+                entity['_components'][ComponentType._typeid] = component;
+
+                entityManager._queryManager.onEntityComponentAdded(entity, ComponentType);
+                componentsManager.componentAddedToEntity(ComponentType);
+
+                // TODO: improve me.
+                entityManager.eventDispatcher.dispatchEvent('EntityManager#COMPONENT_ADDED', entity, ComponentType);
+
+                console.log("Component added!", { component, key });
+                // localEntity.addComponent(component.constructor, component);
+            }
+
+            entity.components.onRemove = function () {
+            }
+        }
     }
 
     // @ts-ignore
