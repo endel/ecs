@@ -1,5 +1,5 @@
 node_modules
 .vscode
 package-lock.json
-usage/client/.cache
-usage/client/dist/
+example/client/.cache
+example/client/dist/
