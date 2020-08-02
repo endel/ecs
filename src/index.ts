@@ -18,6 +18,10 @@ export interface Component<C = any> extends Schema, EcsyComponent<C> { };
 export class Component<C> extends Schema {
     static schema: any = {};
     static isComponent: true = true;
+
+    // alias ECSY's _typeId to @colyseus/schema's _typeid
+    static get _typeId() { return (this as typeof Schema)._typeid; }
+    static set _typeId(typeId: any) {/* ignore */}
 }
 
 export interface TagComponent<C = any> extends Schema, EcsyTagComponent { };

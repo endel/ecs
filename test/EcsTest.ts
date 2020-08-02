@@ -1,5 +1,6 @@
 import util from "util";
-import { type, Reflection, Schema } from "@colyseus/schema";
+import assert from "assert";
+import { type, Reflection, Schema, Context } from "@colyseus/schema";
 import { World, System, TagComponent, State } from "../src";
 import { Component } from "../src";
 // import { Component } from "ecsy";
@@ -148,6 +149,18 @@ describe("ECS", () => {
         });
 
     });
+
+    describe("ECSY <-> @colyseus/schema internals", () => {
+        it("Component._typeId should match Schema's _typeid", () => {
+            const type = Context.create();
+
+            class MyComponent extends Component {
+                @type("string") str: string;
+            }
+
+            assert.equal(MyComponent._typeId, MyComponent._typeid);
+        });
+    })
 
     describe("Custom Types", () => {
         it("should allow custom defined Schema types", () => {
