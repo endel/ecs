@@ -104,7 +104,25 @@ export class World extends EcsyWorld {
 
     useEntities(entities: Entity[]) {
         this['entityManager']._entities = entities;
+
+        //
+        // When called from the client-side (browser)
+        // Enable auto decoding of entities.
+        // - Automatically assign entities into the World
+        // - Automatically assign components into the entities.
+        //
+        if (
+            typeof global['window'] !== 'undefined' &&
+            typeof global['window'].document !== 'undefined'
+        ) {
+            this.enableAutoDecoding(entities);
+        }
+
         return this;
+    }
+
+    enableAutoDecoding(entities: Entity[]) {
+        console.log("TODO: enableAutoDecoding");
     }
 
     // @ts-ignore
