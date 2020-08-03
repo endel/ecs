@@ -29,6 +29,5 @@ export class Intersecting extends Component {
 }
 
 export class State extends Schema {
-    // @ts-ignore
     @type([Entity]) entities = new ArraySchema<Entity>();
 }
