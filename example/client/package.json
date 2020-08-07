@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.11.0",
-    "@colyseus/ecs": "^0.3.0-alpha.16",
+    "@colyseus/ecs": "^0.4.0-alpha.0",
     "colyseus.js": "^0.14.0-alpha.4"
   }
 }

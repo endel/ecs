@@ -128,9 +128,6 @@ export class World extends EcsyWorld {
         entities.onAdd = (entity: Entity, index: number) => {
             entity.alive = true;
 
-            console.log("Entity added!", { entity, index });
-            // const localEntity = world.createEntity();
-
             entity.components.onAdd = function (component, key) {
                 const ComponentType = component.constructor as typeof Schema;
 
@@ -142,12 +139,10 @@ export class World extends EcsyWorld {
 
                 // TODO: improve me.
                 entityManager.eventDispatcher.dispatchEvent('EntityManager#COMPONENT_ADDED', entity, ComponentType);
-
-                console.log("Component added!", { component, key });
-                // localEntity.addComponent(component.constructor, component);
             }
 
             entity.components.onRemove = function () {
+                // TODO: trigger component removal?
             }
         }
     }

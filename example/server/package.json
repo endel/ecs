@@ -15,14 +15,13 @@
   },
   "homepage": "https://github.com/colyseus/create-colyseus#readme",
   "devDependencies": {
-    "@colyseus/loadtest": "^0.13.1",
     "@types/cors": "^2.8.6",
     "@types/express": "^4.17.1",
     "ts-node": "^8.1.0",
     "typescript": "^3.4.5"
   },
   "dependencies": {
-    "@colyseus/ecs": "^0.3.0-alpha.13",
+    "@colyseus/ecs": "^0.4.0-alpha.0",
     "@colyseus/monitor": "^0.12.2",
     "@colyseus/social": "^0.10.9",
     "colyseus": "^0.14.0-alpha.10",

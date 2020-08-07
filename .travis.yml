@@ -1,0 +1,15 @@
+language: node_js
+
+os:
+  - linux
+  - windows
+
+node_js:
+  - 13
+  - 14
+
+install:
+  - 'npm install'
+
+script:
+  - npm test
