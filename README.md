@@ -1,10 +1,14 @@
-# ATTENTION: THIS IS JUST AN EXPERIMENT 
+# ATTENTION: THIS IS JUST AN EXPERIMENT
 
 **NOT READY TO USE**
 
 The current state of this repository is very messy - basically a bunch of glue code trying to make `@colyseus/schema` work along with [ECSY](https://github.com/MozillaReality/ecsy).
 
 If you're feeling brave enough, you're encouraged to continue performing some experiments with this repository and help it reach a _not that bad_ state.
+
+<a href="https://travis-ci.org/endel/ecs">
+    <img src="https://img.shields.io/travis/endel/ecs.svg?style=for-the-badge" alt="Build status" />
+</a>
 
 ## Goal
 
