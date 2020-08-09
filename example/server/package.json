@@ -21,7 +21,7 @@
     "typescript": "^3.4.5"
   },
   "dependencies": {
-    "@colyseus/ecs": "^0.4.0-alpha.0",
+    "@colyseus/ecs": "^0.4.0-alpha.2",
     "@colyseus/monitor": "^0.12.2",
     "@colyseus/social": "^0.10.9",
     "colyseus": "^0.14.0-alpha.10",

@@ -175,7 +175,7 @@ export class World extends EcsyWorld {
                     break;
 
                 case "object":
-                    type = (Array.isArray(schemaType))
+                    type = (schemaType.array)
                         ? Types.Array
                         : Types.JSON;
                     break;

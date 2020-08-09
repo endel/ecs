@@ -180,6 +180,7 @@ describe("Example", () => {
                             if (!entity.hasComponent(Intersecting)) {
                                 entity.addComponent(Intersecting);
                             }
+
                             intersectComponent = entity.getMutableComponent(Intersecting);
                             intersectComponent.points.push(...intersect);
                         }
@@ -209,7 +210,7 @@ describe("Example", () => {
             }
         }
 
-        it("execute world simulation", (done) => {
+        it("execute world simulation", function (done) {
             const state = new State();
 
             const world = new World();
@@ -250,19 +251,22 @@ describe("Example", () => {
                 movement.velocity.set(random(-20, 20), random(-20, 20));
             }
 
-            let previousTime = Date.now();
+            const deltaTime = 1000 / 60;
+
             let simulations = 0;
 
+            const decodedState = new State();
+            decodedState.decode(state.encodeAll());
+
             const simulationInterval = setInterval(() => {
-                const now = Date.now();
-                world.execute(now - previousTime);
-                previousTime = now;
+                world.execute(deltaTime);
 
                 // simulate 10 times.
                 simulations++;
 
                 const encoded = state.encode();
                 console.log("ENCODED (bytes) =>", encoded.length);
+                decodedState.decode(encoded);
 
                 if (simulations > 10) {
                     clearInterval(simulationInterval);
