@@ -22,6 +22,12 @@ export class Component<C> extends Schema {
     // alias ECSY's _typeId to @colyseus/schema's _typeid
     static get _typeId() { return (this as typeof Schema)._typeid; }
     static set _typeId(typeId: any) {/* ignore */}
+
+    reset() {
+        EcsyComponent.prototype.reset.call(this);
+        // clear refId to ensure a new one is going to be assigned
+        this['$changes'].refId = undefined;
+    }
 }
 
 export interface TagComponent<C = any> extends Schema, EcsyTagComponent { };
