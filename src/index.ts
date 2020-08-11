@@ -1,6 +1,7 @@
 import { Schema, ArraySchema, type, MapSchema } from "@colyseus/schema";
 
 import {
+    Attributes,
     World as EcsyWorld,
     WorldOptions,
     _Entity as EcsyEntity,
@@ -197,4 +198,4 @@ export class World extends EcsyWorld {
     }
 }
 
-export { System };
+export { Attributes, System };
