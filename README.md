@@ -24,3 +24,17 @@ The goal of this project is to have a good way to use ECS along with [Colyseus](
 - ~ECSY has a component called `TagComponent` that does not have any data on it. This conflicts with `@colyseus/schema`, as every `Schema` instance is required to hold at least one property.~ - @colyseus/schema@^1.0.0-alpha.29 now allows to have intermediary "abstract" structures with no fields.
 - The [test scenario](test/EcsTest.ts) is able to encode the `World` into ~1236 bytes.
     - The test scenario has 50 entities with 3 components on each of them - two vectors and a component holding a string.
+
+## Troubleshooting
+
+Make sure you create or join the room on the client by passing in a concrete type, not just the generic. For instance instead of:
+
+```ts
+await client.joinById<MyGameState>(roomId)
+```
+
+you should use
+
+```ts
+await client.joinById(roomId, {}, MyGameState)
+```
