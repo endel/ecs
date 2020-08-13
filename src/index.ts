@@ -143,6 +143,8 @@ export class World extends EcsyWorld {
                 entityManager._queryManager.onEntityComponentAdded(entity, ComponentType);
                 componentsManager.componentAddedToEntity(ComponentType);
 
+                component.onChange = () => { entity.getMutableComponent(ComponentType as any) }
+
                 // TODO: improve me.
                 entityManager.eventDispatcher.dispatchEvent('EntityManager#COMPONENT_ADDED', entity, ComponentType);
             }
