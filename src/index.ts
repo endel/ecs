@@ -87,6 +87,17 @@ export class Entity extends Schema {
         // @ts-ignore
         this.numStateComponents = 0;
     }
+    
+    reset() {
+        this.id = this._entityManager._nextEntityId++;
+
+        for (var ecsyComponentId in this._ComponentTypes) {
+            delete this._components[ecsyComponentId];
+        }
+        
+        this._ComponentTypes.length = 0;
+        this.queries.length = 0;
+    }
 }
 
 //
