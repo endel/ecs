@@ -89,14 +89,23 @@ export class Entity extends Schema {
     }
     
     reset() {
+        // @ts-ignore
         this.id = this._entityManager._nextEntityId++;
 
+        // @ts-ignore
         for (var ecsyComponentId in this._ComponentTypes) {
+            // @ts-ignore
             delete this._components[ecsyComponentId];
         }
         
+        // @ts-ignore
         this._ComponentTypes.length = 0;
+        
+        // @ts-ignore
         this.queries.length = 0;
+        
+        // clear refId to ensure a new one is going to be assigned
+        this['$changes'].refId = undefined;
     }
 }
 
