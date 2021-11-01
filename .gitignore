@@ -3,3 +3,6 @@ node_modules
 package-lock.json
 example/client/.cache
 example/client/dist/
+.idea
+example/client/.parcel-cache
+lib
