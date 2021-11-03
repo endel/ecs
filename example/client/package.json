@@ -11,12 +11,17 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/core": "^7.11.0",
+    "@babel/plugin-proposal-class-properties": "^7.14.5",
     "@babel/plugin-transform-runtime": "^7.11.0",
-    "parcel": "^1.12.4"
+    "@babel/plugin-proposal-decorators": "^7.15.4",
+    "parcel": "^2.0.0"
   },
   "dependencies": {
     "@babel/runtime-corejs2": "^7.11.0",
     "@colyseus/ecs": "^0.4.0-alpha.2",
-    "colyseus.js": "^0.14.0-alpha.4"
+    "colyseus.js": "^0.14.0-alpha.17"
+  },
+  "resolutions": {
+    "@babel/preset-env": "7.13.8"
   }
 }
